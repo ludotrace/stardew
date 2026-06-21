@@ -253,6 +253,7 @@ public class LudoTraceMod : Mod
         return new
         {
             type,
+            wall_time    = DateTime.UtcNow.ToString("o"),
             game_date    = GameDate(),
             game_time    = GameTime(),
             farm_name    = Game1.getFarm()?.Name ?? "",

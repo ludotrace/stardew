@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+*.user
+local.props
+events-api.txt
+harmony.txt
+migrate*.txt
+reflection.txt

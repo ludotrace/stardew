@@ -83,8 +83,7 @@ jobs:
         uses: Nexus-Mods/upload-action@v1.0.0-beta.8
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY }}
-          game_domain_name: stardewvalley
-          mod_id: 48026
+          file_id: ${{ vars.NEXUSMODS_GROUP_ID }}
           filename: LudoTrace-Stardew-${{ env.MOD_VERSION }}.zip
           version: ${{ env.MOD_VERSION }}
           display_name: LudoTrace Stardew ${{ env.MOD_VERSION }}

@@ -37,7 +37,7 @@ jobs:
         run: git clone --depth 1 https://github.com/StardewModders/mod-reference-assemblies.git "$HOME/StardewValley"
 
       - name: Build
-        run: dotnet build -c Release -p:EnableModDeployer=false
+        run: dotnet build -c Release -p:GamePath="$HOME/StardewValley" -p:EnableModDeployer=false
 
       - name: Package
         run: |

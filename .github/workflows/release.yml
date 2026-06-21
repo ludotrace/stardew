@@ -33,10 +33,11 @@ jobs:
           VERSION_NUM="${MOD_VERSION#v}"
           sed -i "s/__VERSION__/$VERSION_NUM/" manifest.json
 
+      - name: Fetch reference assemblies
+        run: git clone --depth 1 https://github.com/StardewModders/mod-reference-assemblies.git "$HOME/StardewValley"
+
       - name: Build
-        run: |
-          mkdir -p /tmp/sdv
-          dotnet build -c Release -p:GamePath=/tmp/sdv -p:EnableModDeployer=false
+        run: dotnet build -c Release -p:EnableModDeployer=false
 
       - name: Package
         run: |

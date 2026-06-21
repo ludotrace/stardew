@@ -23,13 +23,26 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build release zip
+      - name: Setup .NET 6
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.x'
+
+      - name: Inject version
         run: |
-          mkdir -p release_staging/LudoTrace
-          cp dist/LudoTrace/LudoTrace.dll release_staging/LudoTrace/
-          cp dist/LudoTrace/manifest.json release_staging/LudoTrace/
-          cp docs/coaching_prompt.md release_staging/coaching_prompt.md
-          cd release_staging && zip -r "../LudoTrace-Stardew-${{ env.VERSION }}.zip" .
+          VERSION_NUM="${VERSION#v}"
+          sed -i "s/__VERSION__/$VERSION_NUM/" manifest.json
+
+      - name: Build
+        run: dotnet build -c Release
+
+      - name: Package
+        run: |
+          mkdir -p staging/LudoTrace
+          cp bin/Release/net6.0/LudoTrace.dll staging/LudoTrace/
+          cp manifest.json                     staging/LudoTrace/
+          cp docs/coaching_prompt.md           staging/
+          cd staging && zip -r "../LudoTrace-Stardew-${VERSION}.zip" .
 
       - name: Create GitHub Release
         id: gh_release
@@ -42,7 +55,6 @@ jobs:
       - name: Update CHANGELOG.md
         id: changelog
         run: |
-          VERSION="${{ env.VERSION }}"
           DATE=$(date -u +%Y-%m-%d)
           NOTES="${{ steps.gh_release.outputs.body }}"
 
@@ -57,7 +69,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git commit -m "Update CHANGELOG.md for $VERSION [skip ci]"
+          git commit -m "Update CHANGELOG.md for ${VERSION} [skip ci]"
           git push origin HEAD:main
 
           echo "entry<<EOF" >> "$GITHUB_OUTPUT"

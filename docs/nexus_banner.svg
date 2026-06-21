@@ -1,0 +1,133 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- background -->
+  <rect width="1280" height="640" fill="#12002e"/>
+
+  <!-- grid -->
+  <line x1="0"    y1="160" x2="1280" y2="160" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="0"    y1="320" x2="1280" y2="320" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="0"    y1="480" x2="1280" y2="480" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="160"  y1="0"   x2="160"  y2="640" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="320"  y1="0"   x2="320"  y2="640" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="480"  y1="0"   x2="480"  y2="640" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="640"  y1="0"   x2="640"  y2="640" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="800"  y1="0"   x2="800"  y2="640" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="960"  y1="0"   x2="960"  y2="640" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+  <line x1="1120" y1="0"   x2="1120" y2="640" stroke="#ffffff" stroke-width="0.4" opacity="0.05"/>
+
+  <!-- heartbeat signal — lower background, crosses full width -->
+  <polyline
+    points="0,510 130,510 175,510 215,390 260,570 295,510 420,510 455,510 490,430 520,570 550,510 1280,510"
+    fill="none" stroke="#1a0050" stroke-width="16" stroke-linejoin="miter" stroke-linecap="square"/>
+  <polyline
+    points="0,510 130,510 175,510 215,390 260,570 295,510 420,510 455,510 490,430 520,570 550,510 1280,510"
+    fill="none" stroke="#00e5ff" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square" opacity="0.35"/>
+  <polyline
+    points="0,510 130,510 175,510 215,390 260,570 295,510 420,510 455,510 490,430 520,570 550,510 1280,510"
+    fill="none" stroke="#a0f0ff" stroke-width="0.75" stroke-linejoin="miter" stroke-linecap="square" opacity="0.18"/>
+
+  <!-- magenta markers on signal peaks/troughs -->
+  <polygon points="215,378 227,390 215,402 203,390" fill="#ff2d78"/>
+  <rect     x="483" y="422" width="14" height="14" fill="#ff2d78" opacity="0.85"/>
+  <polygon points="260,558 272,570 260,582 248,570" fill="#ff2d78" opacity="0.7"/>
+  <rect     x="513" y="562" width="14" height="14" fill="#ff2d78" opacity="0.55"/>
+
+  <!-- purple markers on baseline -->
+  <polygon points="420,498 432,510 420,522 408,510" fill="#c77dff" opacity="0.75"/>
+  <rect     x="123" y="503" width="14" height="14" fill="#c77dff" opacity="0.45"/>
+  <polygon points="830,498 842,510 830,522 818,510" fill="#c77dff" opacity="0.35"/>
+  <rect     x="1100" y="503" width="14" height="14" fill="#c77dff" opacity="0.22"/>
+
+  <!-- ── LEFT COLUMN ───────────────────────────────────────────── -->
+
+  <!-- wordmark -->
+  <text x="44" y="88"
+    font-family="'Courier New',monospace" font-size="62" font-weight="700" letter-spacing="-1"
+    fill="#ffffff">LUDO<tspan fill="#ff2d78">TRACE</tspan></text>
+
+  <!-- subtitle -->
+  <text x="46" y="118"
+    font-family="'Courier New',monospace" font-size="12" letter-spacing="5"
+    fill="#00e5ff" opacity="0.7">Session journal for Stardew Valley</text>
+
+  <!-- column rule -->
+  <line x1="44" y1="142" x2="590" y2="142" stroke="#ffffff" stroke-width="0.5" opacity="0.12"/>
+
+  <!-- section label -->
+  <text x="44" y="172"
+    font-family="'Courier New',monospace" font-size="10" letter-spacing="5"
+    fill="#c77dff" opacity="0.75">EXAMPLE  AI  OUTPUT</text>
+
+  <!-- bullet 1 -->
+  <text x="44" y="208" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">·  You caught a 22-inch Catfish but left before noon.</text>
+  <text x="60" y="226" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">   Catfish only bite after 6PM in rainy weather —</text>
+  <text x="60" y="244" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">   check tomorrow's forecast.</text>
+
+  <!-- bullet 2 -->
+  <text x="44" y="278" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">·  Penny received a Parsnip and lost 50 friendship</text>
+  <text x="60" y="296" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">   points. She loves Melons and Poppies. Her birthday</text>
+  <text x="60" y="314" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">   is Summer 2 — loved gift gives 8× the hearts.</text>
+
+  <!-- bullet 3 -->
+  <text x="44" y="348" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">·  Spring 15, 4,200g in hand, zero crops shipped.</text>
+  <text x="60" y="366" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">   Pierre has Bean Starters at 60g each. Plant before</text>
+  <text x="60" y="384" font-family="'Courier New',monospace" font-size="13" fill="#ffffff" opacity="0.88">   Spring 18 or miss the season entirely.</text>
+
+  <!-- column divider -->
+  <line x1="622" y1="44" x2="622" y2="558" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
+
+  <!-- ── RIGHT COLUMN ──────────────────────────────────────────── -->
+
+  <!-- dim backing for log readability -->
+  <rect x="636" y="44" width="604" height="514" fill="#000000" opacity="0.22"/>
+
+  <!-- section label -->
+  <text x="656" y="84"
+    font-family="'Courier New',monospace" font-size="10" letter-spacing="5"
+    fill="#c77dff" opacity="0.75">SESSION  LOG</text>
+
+  <!-- JSONL — session_start in cyan -->
+  <text x="656" y="116" font-family="'Courier New',monospace" font-size="11" fill="#00e5ff" opacity="0.9">{"type":"session_start","game_date":"spring 15 Y1",</text>
+  <text x="656" y="133" font-family="'Courier New',monospace" font-size="11" fill="#00e5ff" opacity="0.9"> "farmer_name":"Kris","money":4200,"energy":270,</text>
+  <text x="656" y="150" font-family="'Courier New',monospace" font-size="11" fill="#00e5ff" opacity="0.9"> "skills":{"farming":1,"fishing":2,"foraging":1}}</text>
+
+  <text x="656" y="174" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.55">{"type":"location","name":"Town","game_time":"08:30"}</text>
+
+  <!-- gift — magenta accent -->
+  <text x="656" y="198" font-family="'Courier New',monospace" font-size="11" fill="#ff2d78" opacity="0.9">{"type":"gift","npc":"Penny","item":"Parsnip",</text>
+  <text x="656" y="215" font-family="'Courier New',monospace" font-size="11" fill="#ff2d78" opacity="0.9"> "reaction":"disliked","game_time":"09:10"}</text>
+
+  <text x="656" y="239" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.55">{"type":"location","name":"Forest","game_time":"10:00"}</text>
+
+  <!-- fish — purple accent -->
+  <text x="656" y="263" font-family="'Courier New',monospace" font-size="11" fill="#c77dff" opacity="0.9">{"type":"fish","name":"Catfish","size":22,</text>
+  <text x="656" y="280" font-family="'Courier New',monospace" font-size="11" fill="#c77dff" opacity="0.9"> "location":"Forest","game_time":"11:40"}</text>
+
+  <text x="656" y="304" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.55">{"type":"used","item":"Salmonberry","category":"food",</text>
+  <text x="656" y="321" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.55"> "game_time":"13:20"}</text>
+
+  <text x="656" y="345" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.55">{"type":"sleep","result":"slept","game_date":"spring 15 Y1"}</text>
+
+  <text x="656" y="369" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.38">{"type":"quest_stage","quest":"Delivery: Penny",</text>
+  <text x="656" y="386" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.38"> "stage":"started","game_date":"spring 15 Y1"}</text>
+
+  <text x="656" y="410" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.38">{"type":"friendship","npc":"Penny","hearts":0,</text>
+  <text x="656" y="427" font-family="'Courier New',monospace" font-size="11" fill="#ffffff" opacity="0.38"> "delta":-50,"game_date":"spring 15 Y1"}</text>
+
+  <!-- session_end in cyan -->
+  <text x="656" y="451" font-family="'Courier New',monospace" font-size="11" fill="#00e5ff" opacity="0.9">{"type":"session_end","game_date":"spring 16 Y1",</text>
+  <text x="656" y="468" font-family="'Courier New',monospace" font-size="11" fill="#00e5ff" opacity="0.9"> "money":4200,"energy":270,"skills":{...}}</text>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+
+  <line x1="44" y1="580" x2="1236" y2="580" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
+
+  <text x="44" y="608"
+    font-family="'Courier New',monospace" font-size="10" letter-spacing="3"
+    fill="#ffffff" opacity="0.28">kills · fish · gifts · quests · friendship · sleep</text>
+
+  <text x="1236" y="608"
+    font-family="'Courier New',monospace" font-size="10" letter-spacing="3"
+    fill="#ffffff" opacity="0.28" text-anchor="end">github.com/ludotrace/stardew</text>
+
+</svg>

@@ -64,18 +64,11 @@ no API endpoint — update it manually in Nexus mod settings after the release l
 
 ---
 
-## First-ever release (NexusMods page setup)
+## NexusMods
 
-The NexusMods upload step in CI uses the `upload-action` which requires an existing mod
-page to upload files to. For the very first release:
-
-1. **Upload manually** at nexusmods.com → Upload a mod → Stardew Valley. Attach the zip.
-2. **Note the mod ID** from the URL: `nexusmods.com/stardewvalley/mods/<ID>`
-3. **Set repository secrets/vars:**
-   - `NEXUSMODS_API_KEY` (secret) — generate at nexusmods.com → Account → API Keys
-   - `NEXUSMODS_GROUP_ID` (var) — the file group ID from the mod page (shown in Nexus mod
-     manager; typically 0 or 1 for the main files group)
-4. Subsequent releases via `make release` will upload automatically.
+Mod page: https://www.nexusmods.com/stardewvalley/mods/48026 (mod ID 48026, hardcoded in
+`release.yml`). CI uploads automatically on tag push once `NEXUSMODS_API_KEY` is set as
+a repository secret (nexusmods.com → Account → API Keys).
 
 ---
 

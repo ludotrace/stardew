@@ -34,7 +34,9 @@ jobs:
           sed -i "s/__VERSION__/$VERSION_NUM/" manifest.json
 
       - name: Build
-        run: dotnet build -c Release
+        run: |
+          mkdir -p /tmp/sdv
+          dotnet build -c Release -p:GamePath=/tmp/sdv -p:EnableModDeployer=false
 
       - name: Package
         run: |

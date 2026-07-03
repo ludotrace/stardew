@@ -3,7 +3,7 @@
 ## What it does
 
 A SMAPI mod that writes structured JSONL events to `lt_stardew_events.jsonl` in the game folder.
-Follows the LudoTrace mod spec at `mods/SPEC.md` — dumb emitter, append-only, no opinions.
+Follows the LudoTrace mod spec — see `SPEC.md` at [github.com/ludotrace/mods](https://github.com/ludotrace/mods) — dumb emitter, append-only, no opinions.
 
 ## Repo structure
 

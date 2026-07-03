@@ -150,3 +150,7 @@ set `NEXUSMODS_API_KEY` (secret) and `NEXUSMODS_GROUP_ID` (var) in the repo sett
 ## Backend prerequisites
 
 - [ ] Core game registry: `stardew` registered before first lt-client upload
+
+## Issues & PRs
+
+GitHub, single remote (`github.com/ludotrace/stardew`). Issues and PRs both via `gh` (`gh issue create/list`, `gh pr create`) — pass `--repo ludotrace/stardew` if running outside a clone.

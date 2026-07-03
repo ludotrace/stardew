@@ -71,3 +71,7 @@ coaching, or the full file for a cross-session summary.
 - The log does not contain your Steam account or any identifying information.
 - Each session runs from `session_start` (save loaded) to `session_end` (save written).
 - The `game_date` field uses Stardew's in-game calendar: `"spring 15 Y1"`, `"fall 28 Y3"`, etc.
+
+## Found a bug, or want to contribute?
+
+Open an issue or a pull request on [github.com/ludotrace/stardew](https://github.com/ludotrace/stardew).

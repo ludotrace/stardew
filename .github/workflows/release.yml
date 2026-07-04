@@ -55,30 +55,6 @@ jobs:
           files: LudoTrace-Stardew-${{ env.MOD_VERSION }}.zip
           generate_release_notes: true
 
-      - name: Update CHANGELOG.md
-        id: changelog
-        run: |
-          DATE=$(date -u +%Y-%m-%d)
-          NOTES="${{ steps.gh_release.outputs.body }}"
-
-          {
-            printf '## %s — %s\n\n' "$MOD_VERSION" "$DATE"
-            echo "$NOTES"
-            echo ""
-            cat CHANGELOG.md 2>/dev/null || true
-          } > CHANGELOG.md.tmp
-          mv CHANGELOG.md.tmp CHANGELOG.md
-
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md
-          git commit -m "Update CHANGELOG.md for ${VERSION} [skip ci]"
-          git push origin HEAD:main
-
-          echo "entry<<EOF" >> "$GITHUB_OUTPUT"
-          printf '## %s — %s\n\n%s\n' "$MOD_VERSION" "$DATE" "$NOTES" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
-
       - name: Upload to NexusMods
         uses: Nexus-Mods/upload-action@v1.0.0-beta.8
         with:
@@ -87,5 +63,5 @@ jobs:
           filename: LudoTrace-Stardew-${{ env.MOD_VERSION }}.zip
           version: ${{ env.MOD_VERSION }}
           display_name: LudoTrace Stardew ${{ env.MOD_VERSION }}
-          description: ${{ steps.changelog.outputs.entry }}
+          description: ${{ steps.gh_release.outputs.body }}
           archive_existing_version: true

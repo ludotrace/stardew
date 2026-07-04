@@ -18,7 +18,7 @@ stardew/
   Makefile                         ← build / run / release targets
   .github/workflows/release.yml   ← tag → zip → GitHub Release → NexusMods
   README.md                        ← community-facing (NexusMods page)
-  CHANGELOG.md                     ← auto-updated by CI on release
+  CHANGELOG.md                     ← updated by hand in the pre-release PR (see Release below)
 ```
 
 ## Tech
@@ -132,13 +132,16 @@ Injects `VERSION` into `manifest.json`, runs `dotnet build -c Release`, restores
 
 ## Release
 
-```bash
-# 1. Bump VERSION file
-# 2. Commit: git add VERSION dist/ && git commit -m "Release vX.Y.Z"
-make release   # guards clean state + main branch, tags, pushes
-```
+1. Bump `VERSION` and add the new entry to `CHANGELOG.md` in the same PR as the
+   change (or a dedicated version-bump PR) — merge to `main` through the normal
+   branch+PR flow before releasing.
+2. `make release` — guards clean state + `main` branch, tags `VERSION`, pushes the tag.
+3. The tag push triggers `.github/workflows/release.yml`: builds fresh from source
+   in CI (`dotnet build`), creates the GitHub Release (auto-generated notes),
+   uploads to NexusMods using those same notes as the description.
 
-GitHub Actions builds the zip from `dist/` and uploads to NexusMods automatically.
+CI never writes back to the repo — no CHANGELOG commit, so nothing can be blocked
+by branch protection on `main` and there's no manual backfill to do after a release.
 First release requires a manual NexusMods upload to create the mod page; after that,
 set `NEXUSMODS_API_KEY` (secret) and `NEXUSMODS_GROUP_ID` (var) in the repo settings.
 

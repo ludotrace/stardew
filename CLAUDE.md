@@ -97,9 +97,26 @@ This deviates from the SPEC's ISO 8601 recommendation but preserves semantic mea
   "money": 4200,
   "energy": 270,
   "skills": {"farming": 3, "mining": 2, "foraging": 1, "fishing": 4, "combat": 2},
-  "relationships": [{"npc": "Penny", "hearts": 6}, ...]
+  "relationships": [{"npc": "Penny", "hearts": 6}, ...],
+  "tools": {"Hoe": "Copper", "Watering Can": "Basic", "Axe": "Steel", "Pickaxe": "Iron"},
+  "farm_objects": {"Sprinkler": 4, "Scarecrow": 2, "Bee House": 1},
+  "stats": {"stepsTaken": 18422, "itemsShipped": 310, "moneyEarned": 214500}
 }
 ```
+
+`tools` covers every `Tool` currently in the farmer's inventory (not a fixed list) —
+key is the tool's display name, value is `UpgradeLevel` mapped through the standard
+forge progression (`Basic`/`Copper`/`Steel`/`Gold`/`Iridium`). This is only exact for
+tools that actually follow that progression (hoe, watering can, axe, pickaxe,
+trash can); fishing rod tiers reuse the same names loosely.
+
+`farm_objects` is a name → count census of everything currently placed in
+`Farm.objects` (sprinklers, scarecrows, kegs, bee houses, ...) — not filtered to any
+specific object type, so new upgrade-coaching signals don't need a schema change.
+
+`stats` is a name → value snapshot of SDV's built-in `StardewValley.Stats` lifetime
+counters, taken via reflection over its public `uint`/`int`/`bool` properties.
+Zero-valued counters are omitted. New stats SMAPI/the game adds show up automatically.
 
 ## Implementation notes
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using HarmonyLib;
@@ -272,8 +273,73 @@ public class LudoTraceMod : Mod
                 .Cast<string>()
                 .Select(key => new { npc = key, hearts = farmer.friendshipData[key].Points / NPC.friendshipPointsPerHeartLevel })
                 .OrderByDescending(r => r.hearts)
-                .ToArray()
+                .ToArray(),
+            tools        = BuildTools(farmer),
+            farm_objects = BuildFarmObjects(),
+            stats        = BuildStats(farmer)
         };
+    }
+
+    // Standard forge-upgrade progression; applies loosely to tools whose UpgradeLevel
+    // doesn't follow it (e.g. fishing rods) but that's an acceptable approximation for
+    // a "dumb emitter" — downstream can interpret.
+    private static readonly string[] ToolTierNames = { "Basic", "Copper", "Steel", "Gold", "Iridium" };
+
+    // Every Tool currently in the farmer's inventory, by name -> tier. Generalized over
+    // the whole inventory (not a fixed hoe/can/axe/pickaxe list) so newly-owned tools
+    // (fishing rod, scythe, ...) show up without a code change.
+    private static object BuildTools(Farmer farmer)
+    {
+        var tools = new Dictionary<string, string>();
+        foreach (var item in farmer.Items)
+        {
+            if (item is Tool tool)
+                tools[tool.Name] = ToolTierNames[Math.Clamp(tool.UpgradeLevel, 0, ToolTierNames.Length - 1)];
+        }
+        return tools;
+    }
+
+    // Census of everything placed on the farm, by object name -> count. Generalized
+    // over all placed objects (not just sprinklers) so future upgrade-coaching signals
+    // (kegs, bee houses, scarecrows, ...) are already captured.
+    private static object BuildFarmObjects()
+    {
+        var farm = Game1.getFarm();
+        if (farm == null) return new Dictionary<string, int>();
+
+        return farm.objects.Values
+            .GroupBy(o => o.Name)
+            .OrderByDescending(g => g.Count())
+            .ToDictionary(g => g.Key, g => g.Count());
+    }
+
+    // Snapshot of SDV's built-in lifetime counters (StardewValley.Stats) via reflection,
+    // so new stats the game adds show up automatically. Zero-valued counters are
+    // dropped to keep the payload to what's actually happened this save.
+    private static object BuildStats(Farmer farmer)
+    {
+        var result = new Dictionary<string, object>();
+        foreach (var prop in typeof(Stats).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+        {
+            if (prop.GetIndexParameters().Length > 0) continue;
+            if (prop.PropertyType != typeof(uint) && prop.PropertyType != typeof(int) && prop.PropertyType != typeof(bool))
+                continue;
+
+            object? value;
+            try { value = prop.GetValue(farmer.stats); }
+            catch { continue; }
+
+            switch (value)
+            {
+                case uint u when u == 0: continue;
+                case int i when i == 0: continue;
+                case bool b when !b: continue;
+                case null: continue;
+            }
+
+            result[prop.Name] = value;
+        }
+        return result;
     }
 }
 

@@ -1,6 +1,6 @@
 {
   "Name": "LudoTrace",
-  "Author": "LudoTrace",
+  "Author": "Timbertree Studios",
   "Version": "__VERSION__",
   "Description": "Writes structured play session events for LudoTrace coaching.",
   "UniqueID": "LudoTrace.Stardew",
